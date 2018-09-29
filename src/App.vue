@@ -32,16 +32,20 @@
           <router-link 
             to="/users" 
             class="nav-item" 
-            tag="li">
+            tag="li"
+            active-class="active">
             <a
               href="#"
               class="nav-link">Список пользователей</a>
           </router-link>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
+        <form 
+          class="form-inline my-2 my-lg-0" 
+          @submit="onSearch">
           <input 
+            v-model="q" 
             class="form-control mr-sm-2" 
-            type="search" 
+            type="search"
             placeholder="Например, Paul"
             aria-label="Поиск">
           <button 
@@ -53,6 +57,21 @@
     <router-view/>
   </div>
 </template>
+
+<script>
+export default {
+    data() {
+        return {
+            q: ''
+        }
+    },
+    methods: {
+        onSearch() {
+            this.$router.push(this.$route.path + '?q=' + this.q)
+        }
+    }
+}
+</script>
 
 <style>
 </style>

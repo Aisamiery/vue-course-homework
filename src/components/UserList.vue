@@ -27,14 +27,16 @@
           v-for="user in users"
           :key="user.id">
           <td><router-link :to="{ name: 'edit', params: { userId: user.id }}">#{{ user.id }}</router-link></td>
-          <td>
+          <td class="avatar">
             <router-link :to="{ name: 'edit', params: { userId: user.id }}">
               <img
                 :src="user.picture"
                 class="img-thumbnail">
             </router-link>
           </td>
-          <td>{{ user.isActive }}</td>
+          <td class="status-row"><div
+            :class="getStatus(user.isActive)" 
+            class="status"/></td>
           <td>{{ user.balance }}</td>
           <td>{{ user.accessLevel }}</td>
           <td>{{ user.firstName }}</td>
@@ -60,9 +62,40 @@ export default {
         return {
             loading: true
         }
+    },
+    methods: {
+        getStatus(status) {
+            return status ? 'enabled' : 'disabled'
+        }
     }
 }
 </script>
 
 <style scoped>
+.status {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+}
+
+.enabled {
+    background-color: green;
+}
+
+.disabled {
+    background-color: red;
+}
+
+.table th,
+.table td {
+    vertical-align: inherit;
+}
+
+.avatar,
+.status-row {
+    text-align: center;
+}
 </style>

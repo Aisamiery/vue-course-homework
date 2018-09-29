@@ -11,7 +11,7 @@
         </div>
       </div>
     </div>
-    <div class="clearfix"/>
+    <hr >
     <div class="row">
       <div class="col-9">
         <pagination
@@ -68,9 +68,13 @@ export default {
     },
     methods: {
         fetchData() {
+            let url = this.url
+            if (this.$route.query.q) {
+                url += '&q=' + this.$route.query.q
+            }
             this.page = Number(this.$route.query.page) || this.page
 
-            axios.get(this.url).then(response => {
+            axios.get(url).then(response => {
                 this.users = response.data
                 this.countList = Number(response.headers['x-total-count'])
             })
@@ -87,5 +91,8 @@ export default {
 <style scoped>
 .user-list {
     margin: 20px 0;
+}
+h2 {
+    margin-bottom: 30px;
 }
 </style>
