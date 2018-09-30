@@ -11,7 +11,8 @@
     <div v-else>
       <user-form 
         :user="user" 
-        @change="save"/>
+        @change="save"
+        @delete="deleteUser" />
     </div>
   </div>
 </template>
@@ -44,6 +45,11 @@ export default {
         save(newUser) {
             axios.put(this.url, newUser).then(() => {
                 //this.$set(this, 'user', newUser)
+                this.$router.push({ name: 'users' })
+            })
+        },
+        deleteUser() {
+            axios.delete(this.url).then(() => {
                 this.$router.push({ name: 'users' })
             })
         }

@@ -30,13 +30,22 @@
               class="nav-link">Главная</a>
           </router-link>
           <router-link 
-            to="/users" 
+            :to="{name: 'users'}"
             class="nav-item" 
             tag="li"
             active-class="active">
             <a
               href="#"
               class="nav-link">Список пользователей</a>
+          </router-link>
+          <router-link
+            :to="{name: 'phones'}"
+            class="nav-item"
+            tag="li"
+            active-class="active">
+            <a
+              href="#"
+              class="nav-link">Телефонная книга</a>
           </router-link>
         </ul>
         <form 

@@ -4,7 +4,7 @@
       <router-link 
         v-for="item in listItems"
         :key="item"
-        :to="'/users?page='+item" 
+        :to="{name: path, query: {'page': item}}"
         :class="{active: item === page}"
         class="page-item"
         tag="li"><a
@@ -32,6 +32,10 @@ export default {
         },
         total: {
             type: Number,
+            required: true
+        },
+        path: {
+            type: String,
             required: true
         }
     },

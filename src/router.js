@@ -16,9 +16,19 @@ export default new Router({
             component: () => import('./views/Users')
         },
         {
+            path: '/phones',
+            name: 'phones',
+            component: () => import('./views/Phones')
+        },
+        {
             path: '/users/edit/:userId',
             name: 'edit',
             component: () => import('./views/Edit')
+        },
+        {
+            path: '/users/add',
+            name: 'add',
+            component: () => import('./views/Add')
         }
     ],
     linkExactActiveClass: 'active'

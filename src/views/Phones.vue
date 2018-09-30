@@ -4,14 +4,25 @@
       <div class="col">
         <div class="user-list">
           <h2>
-            Список пользователей
+            Телефонная книга
             <small class="text-muted">( всего {{ countList }} )</small>
           </h2>
-          <router-link 
-            :to="{name: 'add'}" 
-            class="btn btn-primary">Добавить</router-link>
-          <hr>
-          <user-list :users="users" />
+          <user-list :users="users">
+            <tr slot="header">
+              <th>ID</th>
+              <th>Имя</th>
+              <th>Фамилия</th>
+              <th>Телефон</th>
+            </tr>
+            <template 
+              slot="item" 
+              slot-scope="user">
+              <td><router-link :to="{ name: 'edit', params: { userId: user.id }}">#{{ user.id }}</router-link></td>
+              <td>{{ user.firstName }}</td>
+              <td>{{ user.lastName }}</td>
+              <td>{{ user.phone }}</td>
+            </template>
+          </user-list>
         </div>
       </div>
     </div>
@@ -22,16 +33,16 @@
           :page="page"
           :limit="limit"
           :total="countList"
-          path="users"/>
+          path="phones"/>
       </div>
       <div class="col">
         <select
           class="form-control"
           @change="onChangeLimit">
-          <option 
-            v-for="i in listLimits" 
-            :key="i" 
-            :value="i" 
+          <option
+            v-for="i in listLimits"
+            :key="i"
+            :value="i"
             :selected="i === limit">{{ i }}</option>
         </select>
       </div>
@@ -45,7 +56,7 @@ import UserList from '@/components/UserList'
 import Pagination from '@/components/Pagination'
 
 export default {
-    name: 'Users',
+    name: 'Phones',
     components: {
         UserList,
         Pagination
@@ -86,7 +97,7 @@ export default {
             })
         },
         onChangeLimit(e) {
-            this.$router.push('/users')
+            this.$router.push('/phones')
             this.page = 1
             this.limit = Number(e.target.value)
         }
@@ -95,10 +106,4 @@ export default {
 </script>
 
 <style scoped>
-.user-list {
-    margin: 20px 0;
-}
-h2 {
-    margin-bottom: 30px;
-}
 </style>

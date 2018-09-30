@@ -11,6 +11,7 @@
           class="form-check-label"
           for="userActive">Активность</label>
       </div>
+      <image-field v-model="localUser.picture" />
       <div class="form-group">
         <label for="inputFirstName">Имя</label>
         <input
@@ -112,9 +113,26 @@
           class="form-control"
           placeholder="01.01.2001">
       </div>
-      <button
-        type="submit"
-        class="btn btn-primary">Сохранить</button>
+      <div class="form-group">
+        <label for="inputSort">Сортировка</label>
+        <input
+          id="inputSort"
+          v-model="localUser.sort"
+          type="number"
+          class="form-control"
+          placeholder="Сортировка">
+      </div>
+      <div>
+        <button
+          type="submit"
+          class="btn btn-primary">Сохранить</button>
+        &nbsp;
+        <button
+          v-show="localUser.id"
+          type="button"
+          class="btn btn-danger" 
+          @click="onDeleteUser">Удалить</button>
+      </div>
     </form>
 
     <hr >
@@ -124,8 +142,12 @@
 </template>
 
 <script>
+import ImageField from '@/components/Fields/ImageField'
 export default {
     name: 'UserForm',
+    components: {
+        ImageField
+    },
     model: {
         prop: 'user'
     },
@@ -146,6 +168,9 @@ export default {
     methods: {
         onSubmitForm() {
             this.$emit('change', Object.assign({}, this.localUser))
+        },
+        onDeleteUser() {
+            this.$emit('delete')
         }
     }
 }

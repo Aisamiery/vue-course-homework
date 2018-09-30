@@ -10,40 +10,48 @@
     <table
       class="user-table table">
       <thead class="thead-dark">
-        <tr>
-          <th>ID</th>
-          <th>Аватар</th>
-          <th>Статус</th>
-          <th>Баланс</th>
-          <th>Группа</th>
-          <th>Имя</th>
-          <th>Фамилия</th>
-          <th>Email</th>
-          <th>Дата регистрации</th>
-        </tr>
+        <slot name="header">
+          <tr>
+            <th>ID</th>
+            <th>Аватар</th>
+            <th>Статус</th>
+            <th>Баланс</th>
+            <th>Группа</th>
+            <th>Имя</th>
+            <th>Фамилия</th>
+            <th>Email</th>
+            <th>Дата регистрации</th>
+          </tr>
+        </slot>
       </thead>
       <tbody>
         <tr
           v-for="user in users"
           :key="user.id">
-          <td><router-link :to="{ name: 'edit', params: { userId: user.id }}">#{{ user.id }}</router-link></td>
-          <td class="avatar">
-            <router-link :to="{ name: 'edit', params: { userId: user.id }}">
-              <img
-                :src="user.picture"
-                class="img-thumbnail">
-            </router-link>
-          </td>
-          <td class="status-row"><div
-            :class="getStatus(user.isActive)" 
-            class="status"/></td>
-          <td>{{ user.balance }}</td>
-          <td>{{ user.accessLevel }}</td>
-          <td>{{ user.firstName }}</td>
-          <td>{{ user.lastName }}</td>
-          <td>{{ user.email }}</td>
-          <td>{{ user.registered }}</td>
+          <slot 
+            v-bind="user"
+            name="item">
+            <td><router-link :to="{ name: 'edit', params: { userId: user.id }}">#{{ user.id }}</router-link></td>
+            <td class="avatar">
+              <router-link :to="{ name: 'edit', params: { userId: user.id }}">
+                <img
+                  :src="user.picture"
+                  class="img-thumbnail">
+              </router-link>
+            </td>
+            <td class="status-row"><div
+              :class="getStatus(user.isActive)"
+              class="status">&nbsp;</div></td>
+            <td>{{ user.balance }}</td>
+            <td>{{ user.accessLevel }}</td>
+            <td>{{ user.firstName }}</td>
+            <td>{{ user.lastName }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.registered }}</td>
+          </slot>
         </tr>
+
+
       </tbody>
     </table>
   </div>
