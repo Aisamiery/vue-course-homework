@@ -16,7 +16,7 @@ export default new Router({
             component: () => import('./views/Users')
         },
         {
-            path: '/edit/:userId',
+            path: '/users/edit/:userId',
             name: 'edit',
             component: () => import('./views/Edit')
         }

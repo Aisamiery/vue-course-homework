@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from '@/axios'
 import UserList from '@/components/UserList'
 import Pagination from '@/components/Pagination'
 
@@ -56,7 +56,7 @@ export default {
     },
     computed: {
         url() {
-            return 'http://localhost:3000/users?_page=' + this.page + '&_limit=' + this.limit
+            return '/users?_page=' + this.page + '&_limit=' + this.limit + '&_sort=sort&_order=asc'
         }
     },
     watch: {
@@ -68,11 +68,12 @@ export default {
     },
     methods: {
         fetchData() {
+            this.page = Number(this.$route.query.page) || this.page
+
             let url = this.url
             if (this.$route.query.q) {
                 url += '&q=' + this.$route.query.q
             }
-            this.page = Number(this.$route.query.page) || this.page
 
             axios.get(url).then(response => {
                 this.users = response.data
