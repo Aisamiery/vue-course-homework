@@ -104,15 +104,12 @@
           class="form-control"
           placeholder="Описание">
       </div>
-      <div class="form-group">
-        <label for="inputDate">Дата регистрации</label>
-        <input
-          id="inputDate"
-          v-model="localUser.registered"
-          type="text"
-          class="form-control"
-          placeholder="01.01.2001">
-      </div>
+      <date-field
+        v-model="localUser.birthday"
+        name="Дата рождения"/>
+      <date-field 
+        v-model="localUser.registered" 
+        name="Дата регистрации"/>
       <div class="form-group">
         <label for="inputSort">Сортировка</label>
         <input
@@ -143,10 +140,12 @@
 
 <script>
 import ImageField from '@/components/Fields/ImageField'
+import DateField from '@/components/Fields/DateField'
 export default {
     name: 'UserForm',
     components: {
-        ImageField
+        ImageField,
+        DateField
     },
     model: {
         prop: 'user'
@@ -162,7 +161,7 @@ export default {
             localUser: {}
         }
     },
-    mounted() {
+    created() {
         this.localUser = Object.assign({}, this.user)
     },
     methods: {

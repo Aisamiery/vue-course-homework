@@ -14,8 +14,9 @@
       "phone": "+7 (994) 572-2861",
       "address": "310 Battery Avenue, Edinburg, Montana, 1999",
       "about": "In et exercitation eu aliquip. Cupidatat qui magna voluptate non. Aliqua deserunt Lorem dolore eiusmod consectetur Lorem cupidatat. Eiusmod tempor nostrud reprehenderit deserunt voluptate sit elit adipisicing commodo ex eiusmod sunt tempor esse. Sit Lorem labore laborum do amet esse do do.",
-      "registered": "04.05.2015",
-      "sort": 0
+      "registered": "27.05.2016",
+      "sort": 0,
+      "birthday": "19.09.2018"
     },
     {
       "id": 1,
@@ -1538,7 +1539,8 @@
       "age": "232",
       "sort": "1",
       "id": 91,
-      "picture": "https://i.imgur.com/sijdBGk.jpg"
+      "picture": "https://i.imgur.com/sijdBGk.jpg",
+      "registered": "25.09.2018"
     }
   ]
 }
